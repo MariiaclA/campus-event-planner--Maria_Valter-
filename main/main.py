@@ -1,6 +1,21 @@
 # 👥Estudante A: Módulo de Gerenciamento de Eventos
+#modelo de evento
+evento = {
+    "nome" : "teste",
+    "data" : "10/09/2026",
+    "local" : "Brasília",
+    "categoria": "teste"
+}
 
+def adicionarEvento(listaEventos, nome, data, local, categoria):
+    novoEvento = {
+        "nome" : nome,
+        "data" : data,
+        "local" : local, 
+        "categoria": categoria
+    }
 
+    listaEventos.append(novoEvento)
 
 
 
