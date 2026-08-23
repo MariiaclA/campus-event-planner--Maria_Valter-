@@ -1,21 +1,24 @@
 # 👥Estudante A: Módulo de Gerenciamento de Eventos
-#modelo de evento
-evento = {
-    "nome" : "teste",
-    "data" : "10/09/2026",
-    "local" : "Brasília",
-    "categoria": "teste"
-}
+def adicionarEvento(listaEventos, nome, data, local,categoria):
+      evento={
+          "nome": nome,
+          "data": data,
+          "local": local,
+          "categoria": categoria
+      }
+      listaEventos.append(evento)
 
-def adicionarEvento(listaEventos, nome, data, local, categoria):
-    novoEvento = {
-        "nome" : nome,
-        "data" : data,
-        "local" : local, 
-        "categoria": categoria
-    }
+print("Evento adicionado com sucesso!")
 
-    listaEventos.append(novoEvento)
+# Estudante A: Listar todos os eventos
+def listarEventos(listaEventos):
+    if len(listaEventos) == 0:
+        print("Nenhum evento cadastrado")
+    else:
+        for event in listaEventos:
+            print(f"Evento: {event["nome"]}, Data: {event["data"]}, Local: {event["local"]}, Categoria: {event["categoria"]}")
+            
+
 
 
 
