@@ -18,8 +18,16 @@ def listarEventos(listaEventos):
         for event in listaEventos:
             print(f"Evento: {event["nome"]}, Data: {event["data"]}, Local: {event["local"]}, Categoria: {event["categoria"]}")
             
+#Estudante A: Filtrar eventos por categoria
+def procurarEventoPorNome(listaEventos, nome):
+    for event in listaEventos:
+        if event["nome"].lower() == nome.lower():
+            return event
+    
+    print("Evento não encontrado")
+    return None 
 
-
+    
 
 
 
