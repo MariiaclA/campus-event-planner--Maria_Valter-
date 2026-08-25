@@ -1,14 +1,40 @@
+import random
+from datetime import datetime
 # 👥Estudante A: Módulo de Gerenciamento de Eventos
-def adicionarEvento(listaEventos, nome, data, local,categoria):
-      evento={
-          "nome": nome,
-          "data": data,
-          "local": local,
-          "categoria": categoria
-      }
-      listaEventos.append(evento)
+#modelo de evento
+evento = {
+    "nome" : "teste",
+    "data" : "10/09/2026",
+    "local" : "Brasília",
+    "categoria": "teste"
+}
 
-print("Evento adicionado com sucesso!")
+
+def validar_data(data):
+    try:
+        datetime.strptime(data, "%d/%m/%Y")
+        return True
+    except ValueError:
+        return False
+
+
+def adicionarEvento(listaEventos, nome, data, local, categoria):
+    validar = validar_data(data)
+
+    if (validar == True):
+        novoEvento = {
+            "id": random.randint(),
+            "nome" : nome,
+            "data" : data,
+            "local" : local, 
+            "categoria": categoria
+        }
+
+        listaEventos.append(novoEvento)
+
+        print("Evento adicionado com sucesso!")
+    else:
+        print("Não foi possível validar a data do evento")
 
 # Estudante A: Listar todos os eventos
 def listarEventos(listaEventos):
@@ -29,15 +55,26 @@ def procurarEventoPorNome(listaEventos, nome):
 
     
 
+def deletarEvento(listaEventos, id):
+    encontrado = {}
+    for event in listaEventos:
+        if event["id"] == id:
+            encontrado = event
+            break
+    
+    if (encontrado):
+        listaEventos.remove(encontrado)
+        return 1
+    else:
+        print("Evento não encontrado")
+        return 0
 
 
 
 
 
 
-
-
-'''========================================================================'''
+#========================================================================'''
 
 
 
