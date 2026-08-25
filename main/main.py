@@ -8,7 +8,6 @@ evento = {
 }
 
 def adicionarEvento(listaEventos, nome, data, local, categoria):
-
     novoEvento = {
         "nome" : nome,
         "data" : data,
@@ -18,21 +17,29 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
 
     listaEventos.append(novoEvento)
 
+    print("Evento adicionado com sucesso!")
+
+
+print("Evento adicionado com sucesso!")
+
+# Estudante A: Listar todos os eventos
 def listarEventos(listaEventos):
-    if  len(listaEventos) == 0:
-        print("Sem eventos !!")
-        return
+    if len(listaEventos) == 0:
+        print("Nenhum evento cadastrado")
+    else:
+        for event in listaEventos:
+            print(f"Evento: {event["nome"]}, Data: {event["data"]}, Local: {event["local"]}, Categoria: {event["categoria"]}")
+            
+#Estudante A: Filtrar eventos por categoria
+def procurarEventoPorNome(listaEventos, nome):
+    for event in listaEventos:
+        if event["nome"].lower() == nome.lower():
+            return event
     
+    print("Evento não encontrado")
+    return None 
 
-    for nv in (listaEventos):
-        print("Nome:" + nv["nome"])
-        print("Data:" + nv["data"])
-        print("Local:" + nv["local"])
-        print("Categoria:" + nv["categoria"])
-
-
-
-
+    
 
 
 
