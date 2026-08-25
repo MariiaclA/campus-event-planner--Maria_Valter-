@@ -1,13 +1,33 @@
 # 👥Estudante A: Módulo de Gerenciamento de Eventos
-def adicionarEvento(listaEventos, nome, data, local,categoria):
-      evento={
-          "nome": nome,
-          "data": data,
-          "local": local,
-          "categoria": categoria
-      }
-      listaEventos.append(evento)
 
+import os
+
+
+listaDeEventos=[]
+
+def limparTela():
+    os.system= ("cls" if os.name == "nt" else "clear")
+
+
+def adicionarEvento(listaDeEventos):
+
+    if (procurarEventoPorNome == None):
+        # cria um novo dicionário
+        evento={}
+        #   adciona um a chave e seu respctivo nome
+        evento["nome"] = input("Informe o nome: ").strip().title()
+        evento["data"] = input("Informe a data do evento: ").strip().title()
+        evento["local"] = input("Informe o local do evento: ").strip().title()
+        evento["Categoria"] = input("Informe a categoria do evento").strip().title()
+        evento["status"]= input("Informe o status do evento como Participado ou Previsto.").strip().title()
+
+        listaDeEventos.append(evento)
+        print("Evento Cadastrado com sucesso")
+    else: 
+        return False
+
+
+      
 print("Evento adicionado com sucesso!")
 
 # Estudante A: Listar todos os eventos
@@ -33,10 +53,6 @@ def procurarEventoPorNome(listaEventos, nome):
 
 
 
-
-
-
-
 '''========================================================================'''
 
 
@@ -56,6 +72,10 @@ def menu():
 while True:
 
     menu()
+    
+    limparTela()
+
+
 
     try: 
         opcao = int(input())
