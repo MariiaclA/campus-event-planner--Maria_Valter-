@@ -8,6 +8,7 @@ evento = {
 }
 
 def adicionarEvento(listaEventos, nome, data, local, categoria):
+
     novoEvento = {
         "nome" : nome,
         "data" : data,
@@ -17,6 +18,17 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
 
     listaEventos.append(novoEvento)
 
+def listarEventos(listaEventos):
+    if  len(listaEventos) == 0:
+        print("Sem eventos !!")
+        return
+    
+
+    for nv in (listaEventos):
+        print("Nome:" + nv["nome"])
+        print("Data:" + nv["data"])
+        print("Local:" + nv["local"])
+        print("Categoria:" + nv["categoria"])
 
 
 
@@ -26,7 +38,9 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
 
 
 
-'''========================================================================'''
+
+
+#========================================================================'''
 
 
 
