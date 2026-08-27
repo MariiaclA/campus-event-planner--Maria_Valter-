@@ -1,13 +1,13 @@
 import random
 from datetime import datetime
+import os
 # 👥Estudante A: Módulo de Gerenciamento de Eventos
 #modelo de evento
-evento = {
-    "nome" : "teste",
-    "data" : "10/09/2026",
-    "local" : "Brasília",
-    "categoria": "teste"
-}
+
+def limparTela():
+    os.system= ("cls" if os.name == "nt" else "clear")
+
+evento=[]
 
 
 def validar_data(data):
@@ -23,11 +23,12 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
 
     if (validar == True):
         novoEvento = {
-            "id": random.randint(),
+            "id": random.randint(1, 1000),
             "nome" : nome,
             "data" : data,
             "local" : local, 
-            "categoria": categoria
+            "categoria": categoria,
+            "participado":False
         }
 
         listaEventos.append(novoEvento)
@@ -47,7 +48,7 @@ def listarEventos(listaEventos):
 #Estudante A: Filtrar eventos por categoria
 def procurarEventoPorNome(listaEventos, nome):
     for event in listaEventos:
-        if event["nome"].lower() == nome.lower():
+        if event["categoria"].lower() == nome.lower():
             return event
     
     print("Evento não encontrado")
@@ -68,10 +69,62 @@ def deletarEvento(listaEventos, id):
     else:
         print("Evento não encontrado")
         return 0
+    
+
+def marcarEventoComoParticipado(listaEventos, nome):
+    for event in listaEventos:
+        if event["nome"].lower() == nome.lower():
+            event["participado"] = True
+            print("Evento marcado como participado!")
+            return True
+
+    print("Evento não encontrado.")
+    return False
 
 
+def gerarRelatorio(listaEventos):
+    if len(listaEventos) == 0:
+        print("Nenhum evento cadastrado.")
+        return
 
+    totalEventos = len(listaEventos)
+    eventosParticipados = 0
+    eventosNaoParticipados = 0
 
+    print("\n========== RELATÓRIO DE EVENTOS ==========\n")
+
+    print(f"Total de eventos: {totalEventos}")
+
+    print("\n--- Eventos Participados ---")
+
+    for event in listaEventos:
+        if event["participado"] == True:
+            eventosParticipados += 1
+
+            print(
+                f"Nome: {event['nome']} | "
+                f"Data: {event['data']} | "
+                f"Local: {event['local']} | "
+                f"Categoria: {event['categoria']}"
+            )
+
+    print("\n--- Eventos Não Participados ---")
+
+    for event in listaEventos:
+        if event["participado"] == False:
+            eventosNaoParticipados += 1
+
+            print(
+                f"Nome: {event['nome']} | "
+                f"Data: {event['data']} | "
+                f"Local: {event['local']} | "
+                f"Categoria: {event['categoria']}"
+            )
+
+    print("\n========== RESUMO ==========")
+    print(f"Eventos participados: {eventosParticipados}")
+    print(f"Eventos não participados: {eventosNaoParticipados}")
+    print(f"Total: {totalEventos}")
 
 
 #========================================================================'''
@@ -82,34 +135,77 @@ def deletarEvento(listaEventos, id):
 
 
 def menu():
-    print("\n1. Adicionar Evento. \n")
-    print("\n2. Ver todos os Eventos. \n")
-    print("\n3. Filtrar Por Categoria. \n")
-    print("\n4. Marcar Evento Como Participado. \n")
-    print("\n5. Gerar Relatório. \n")
+    print("\n1. Adicionar Evento. ")
+    print("\n2. Ver todos os Eventos.")
+    print("\n3. Filtrar Por Categoria.")
+    print("\n4. Marcar Evento Como Participado.")
+    print("\n5. Gerar Relatório.")
     print("\n6. Sair")
+
+
+
+
 
 
 while True:
 
+    limparTela()
     menu()
-
+    
     try: 
         opcao = int(input())
 
         match opcao:
 
             case 1:
+                nome = input("Nome do evento: ")
+                data = input("Data (DD/MM/AAAA): ")
+                local = input("Local: ")
+                categoria = input("Categoria: ")
 
-                pass
+                adicionarEvento(evento, nome, data, local, categoria) 
+
+                continue              
             case 2:
-                pass
+                print("\n===== TODOS OS EVENTOS =====")
+
+                listarEventos(evento)
+
+                continue
             case 3:        
-                pass
+
+                nome = input("Digite o nome do evento: ")
+
+                envetoEncontrado = procurarEventoPorNome(evento, nome)
+
+                if envetoEncontrado != None:
+
+                    print("\nEvento encontrado!")
+
+                    print(f"ID: {envetoEncontrado['id']}")
+                    print(f"Nome: {envetoEncontrado['nome']}")
+                    print(f"Data: {envetoEncontrado['data']}")
+                    print(f"Local: {envetoEncontrado['local']}")
+                    print(f"Categoria: {envetoEncontrado['categoria']}")
+
+                    if evento["participado"]:
+                        print("Status: Participado")
+                    else:
+                        print("Status: Não participado")
+
+                else:
+
+                    print("Evento não encontrado.")
+
+                continue
             case 4:
-                pass
+                 nome = input("Digite o nome do evento que você participou: ")
+                 marcarEventoComoParticipado(evento, nome)
+                 continue
+                
             case 5:        
-                pass
+                gerarRelatorio(evento)
+                continue
             case 6:
                 print("Obrigado, volte sempre.")
                 break
