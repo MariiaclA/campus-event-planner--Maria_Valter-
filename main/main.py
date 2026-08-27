@@ -1,34 +1,40 @@
+import random
+from datetime import datetime
 # 👥Estudante A: Módulo de Gerenciamento de Eventos
+#modelo de evento
+evento = {
+    "nome" : "teste",
+    "data" : "10/09/2026",
+    "local" : "Brasília",
+    "categoria": "teste"
+}
 
-import os
 
-
-listaDeEventos=[]
-
-def limparTela():
-    os.system= ("cls" if os.name == "nt" else "clear")
-
-
-def adicionarEvento(listaDeEventos):
-
-    if (procurarEventoPorNome == None):
-        # cria um novo dicionário
-        evento={}
-        #   adciona um a chave e seu respctivo nome
-        evento["nome"] = input("Informe o nome: ").strip().title()
-        evento["data"] = input("Informe a data do evento: ").strip().title()
-        evento["local"] = input("Informe o local do evento: ").strip().title()
-        evento["Categoria"] = input("Informe a categoria do evento").strip().title()
-        evento["status"]= input("Informe o status do evento como Participado ou Previsto.").strip().title()
-
-        listaDeEventos.append(evento)
-        print("Evento Cadastrado com sucesso")
-    else: 
+def validar_data(data):
+    try:
+        datetime.strptime(data, "%d/%m/%Y")
+        return True
+    except ValueError:
         return False
 
 
-      
-print("Evento adicionado com sucesso!")
+def adicionarEvento(listaEventos, nome, data, local, categoria):
+    validar = validar_data(data)
+
+    if (validar == True):
+        novoEvento = {
+            "id": random.randint(),
+            "nome" : nome,
+            "data" : data,
+            "local" : local, 
+            "categoria": categoria
+        }
+
+        listaEventos.append(novoEvento)
+
+        print("Evento adicionado com sucesso!")
+    else:
+        print("Não foi possível validar a data do evento")
 
 # Estudante A: Listar todos os eventos
 def listarEventos(listaEventos):
@@ -49,11 +55,26 @@ def procurarEventoPorNome(listaEventos, nome):
 
     
 
+def deletarEvento(listaEventos, id):
+    encontrado = {}
+    for event in listaEventos:
+        if event["id"] == id:
+            encontrado = event
+            break
+    
+    if (encontrado):
+        listaEventos.remove(encontrado)
+        return 1
+    else:
+        print("Evento não encontrado")
+        return 0
 
 
 
 
-'''========================================================================'''
+
+
+#========================================================================'''
 
 
 
